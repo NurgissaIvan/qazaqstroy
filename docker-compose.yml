@@ -1,0 +1,22 @@
+version: '3'
+services:
+  web:
+    build: .
+    container_name: qazaqstroy-web
+    environment:
+      PG USER: postgres
+      PASSWORD: password
+      DATABASE: qazaqstroy
+      GHOST: qazaqstroy-db
+      PORT: 5432
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    volumes:
+      - .:/usr/src/app
+
+networks:
+  default:
+    external:
+      name: qazaqstroy-network
